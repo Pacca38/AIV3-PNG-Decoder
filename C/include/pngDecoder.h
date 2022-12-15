@@ -389,15 +389,6 @@ unsigned char *parse_png(const char *string, int *width, int *height, int *chann
         }
     }
 
-    /*
-    chunk_list_t *chunk_list_cpy = chunk_list;
-    while (chunk_list_cpy)
-    {
-        print_chunk_info(chunk_list_cpy->chunk);
-        chunk_list_cpy = (chunk_list_t *)chunk_list_cpy->node.next;
-    }
-    */
-
     //Parse IHDR chunk
     ihdr_info_t *ihdr_infos = parse_ihdr(((chunk_list_t *)list_pop((struct list_node **)&chunk_list))->chunk);
     if (!ihdr_infos)
@@ -435,13 +426,6 @@ unsigned char *parse_png(const char *string, int *width, int *height, int *chann
     *width = ihdr_infos->width;
     *height = ihdr_infos->height;
     *channels = 4;
-
-    /*
-    for (size_t i = 0; i < 1000; i = i + 4)
-    {
-        printf("%u %u %u %u\n", pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]);
-    }
-    */
     free(chunk_list);
 end:
     fclose(png);

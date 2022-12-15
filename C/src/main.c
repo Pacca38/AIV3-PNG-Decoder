@@ -80,7 +80,6 @@ int main(int argc, char **argv)
         goto quit;
     }
 
-    //Game loop
     int running = 1;
     float last_PC = 0;
     float new_PC = SDL_GetPerformanceCounter();
